@@ -25,9 +25,12 @@ The GRIDLink SDK package includes the following:
 * Use C++ Stubs for C++ style calls
 * Use .NET Stubs for C#/.NET
 
+### Simulator
+* The simulator acts as the server for GRID applications (e.g. Samples). It simulates the GRID environment and responds to the request made by GRID.dll.
+
 ### Samples 
 * SampleCApplication - illustrates a minimal C implementation
-* SampleCPPApplication - illustrates a minimal C++ implementation
-* SampleCPPGUIApplication - illustrates a C++ GUI implementation with Account Federation 
+* SampleCPPApplication - illustrates a minimal console-based C++ implementation
+* SampleCPPGUIApplication - illustrates a C++ GUI-based implementation with Account Federation 
 
 See https://github.com/camify/GFN-Link/wiki for more details.
