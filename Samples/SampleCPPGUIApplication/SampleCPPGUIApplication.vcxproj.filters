@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GRIDApplication.cpp">
+      <Filter>Developer GRID Link Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleGame.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgHTTPRequest.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSampleGame.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpClient.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IDMSimulator.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Base64.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleGame.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgHTTPRequest.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSampleGame.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpClient.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDMSimulator.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base64.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\connected.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="res\not_coonected.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="res\SampleGame.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{b6617994-61c9-46ad-ab18-f210589a4fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Developer GRID Link Implementation">
+      <UniqueIdentifier>{07d47b67-5f1f-44b5-adce-1839ca1cd48c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Developer Files">
+      <UniqueIdentifier>{b1f63d95-22cf-459a-8540-e9b35b351fe0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SampleGame.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

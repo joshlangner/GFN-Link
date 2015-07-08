@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Developer Files">
+      <UniqueIdentifier>{d03c6f1d-6c49-4178-b16d-5e9350aaddd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Developer GRID Link Implementation">
+      <UniqueIdentifier>{a0cdc0a3-ef5b-4301-85cf-75ff12ed644b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleModule.cpp">
+      <Filter>Developer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GRIDApplication.cpp">
+      <Filter>Developer GRID Link Implementation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SampleModule.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
