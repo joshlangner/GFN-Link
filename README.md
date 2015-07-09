@@ -26,7 +26,7 @@ The GRIDLink SDK package includes the following:
 * Use .NET Stubs for C#/.NET
 
 ### Simulator
-* The simulator acts as the server for GRID applications (e.g. Samples). It simulates the GRID environment and responds to the request made by GRID.dll.
+* The simulator acts as the server for GRID applications (e.g. Samples). It simulates the GRID environment and responds to the request made by GRID.dll. This also includes a sample IDM server for Account Federation Samples. 
 
 ### Samples 
 * SampleCApplication - illustrates a minimal C implementation
