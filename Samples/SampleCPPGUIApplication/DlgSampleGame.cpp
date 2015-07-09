@@ -288,9 +288,9 @@ void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *res
 	lv_sent_cmd.SetItemText(nItem, 1, cmd);
 	if (err != gleSuccess || result == NULL)
 	{
-		wchar_t err_msg[][40] = {
+		wchar_t err_msg[][60] = {
 			L"OK",	// gleSuccess = 0,
-			L"GRID DLL Not Present !",		 // gleGRIDDLLNotPresent,
+			L"Not connected to server, or GRID.dll not found !",		 // gleGRIDDLLNotPresent,
 			L"GRID Com Not Established !",	 // gleGRIDComNotEstablished,		// No controller/test application running to connect to.
 			L"GRID Com Error !",			 // gleGRIDComError,
 			L"Error Calling DLL Function !", // gleErrorCallingDLLFunction,		// Generic DLL error - possibly due to incompatible DLL.
