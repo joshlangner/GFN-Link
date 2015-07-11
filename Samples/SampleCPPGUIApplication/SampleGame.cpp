@@ -35,9 +35,6 @@ CSampleGameDlg* theAppDlg;
 
 BOOL CSampleGameApp::InitInstance()
 {
-	// Initialize GRID Link
-	InitializeGRIDLinkSDK();
-
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.
@@ -101,9 +98,6 @@ BOOL CSampleGameApp::InitInstance()
 
 int CSampleGameApp::ExitInstance()
 {
-	// Shutdown GRID Link
-	GRIDLinkSDK::ShutdownGRIDLinkSDK();
-
 	return 0;
 }
 

@@ -105,20 +105,30 @@ BOOL CSampleGameDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// Extra initialization ...
 	InitListView();
-
+	
 	CString caption;
 	GetWindowText(caption);
-	if (GRIDLinkSDK::Instance()->IsGRIDEnabled())
+
+	// Initialize GRID Link
+	GRIDLinkError grid_init_result = InitializeGRIDLinkSDK(); 
+	if (grid_init_result == gleGRIDDLLNotPresent)
 	{
-		connectivity_icon.LoadBitmap(IDB_conn);
-		caption += " (Connected)";
+		caption += " (Loading GRID.dll failed)";
+		connectivity_icon.LoadBitmap(IDB_dll_err);
 	}
 	else
 	{
-		connectivity_icon.LoadBitmap(IDB_not_conn);
-		caption += " (NOT connected)";
+		if (GRIDLinkSDK::Instance()->IsGRIDEnabled())
+		{
+			connectivity_icon.LoadBitmap(IDB_conn);
+			caption += " (Connected)";
+		}
+		else
+		{
+			connectivity_icon.LoadBitmap(IDB_not_conn);
+			caption += " (NOT connected)";
+		}
 	}
 	SetWindowText(caption);
 	picConnectivity.SetBitmap(connectivity_icon);
@@ -271,6 +281,9 @@ void CSampleGameDlg::OnBnClickedbtnAuth()
 void CSampleGameDlg::OnClose()
 {
 	CDialogEx::OnClose();
+
+	// Shutdown GRID Link
+	GRIDLinkSDK::ShutdownGRIDLinkSDK();
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -290,7 +303,7 @@ void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *res
 	{
 		wchar_t err_msg[][60] = {
 			L"OK",	// gleSuccess = 0,
-			L"Not connected to server, or GRID.dll not found !",		 // gleGRIDDLLNotPresent,
+			L"Not connected to server, or GRID.dll not Present !",		 // gleGRIDDLLNotPresent,
 			L"GRID Com Not Established !",	 // gleGRIDComNotEstablished,		// No controller/test application running to connect to.
 			L"GRID Com Error !",			 // gleGRIDComError,
 			L"Error Calling DLL Function !", // gleErrorCallingDLLFunction,		// Generic DLL error - possibly due to incompatible DLL.
