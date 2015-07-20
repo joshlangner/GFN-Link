@@ -33,8 +33,10 @@ private:
 	void btnGoClick();
 	void btnClearClick();
 	void btnProfileClick();
+	void btnResolveSymbolClick();
 	void RestoreDefaults();
 	void CustomIDMClick();
+	void ResolveSymbols(CString *s);
 	void ReportError(const char *formatted_msg, int err_code);
 	void ShowResponse(const char *rsp, size_t len);
 };

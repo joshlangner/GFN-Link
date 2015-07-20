@@ -6,6 +6,7 @@
 #include"DlgHTTPRequest.h"
 #include"HttpClient.h"
 #include "GRIDLinkSDK_CAPI.hpp"
+#include "base64.h"
 
 using namespace GRIDLinkSDK;
 
@@ -21,6 +22,7 @@ using namespace std;
 BEGIN_MESSAGE_MAP(CHTTPRequestDlg, CDialogEx)	
 	ON_BN_CLICKED(rdCustomIDM, &CHTTPRequestDlg::CustomIDMClick)
 	ON_BN_CLICKED(rdSimIDM, &CHTTPRequestDlg::RestoreDefaults)
+	ON_BN_CLICKED(btnResolveSymbol, &CHTTPRequestDlg::btnResolveSymbolClick)
 	ON_BN_CLICKED(btnProfile, &CHTTPRequestDlg::btnProfileClick)
 	ON_BN_CLICKED(btnGo, &CHTTPRequestDlg::btnGoClick)
 	ON_BN_CLICKED(btnClear, &CHTTPRequestDlg::btnClearClick)
@@ -72,7 +74,7 @@ void CHTTPRequestDlg::RestoreDefaults()
 	SetWindowText(L"3rd-Party-IDM Simulator");
 	
 	txtUrl.SetWindowText(IDM_SIMULATOR_PATH);
-	txtHeaders.SetWindowText(TEXT("Authorization: Basic b64(<Token>:)"));
+	txtHeaders.SetWindowText(TEXT("Authorization: Basic @b64(<Token>:)"));
 	txtBody.SetWindowText(TEXT("")); // 
 //	txtUrl.SetWindowText(TEXT("http://nvslb01.nvidia.com/api/1/authentication/user/login"));  
 //	txtBody.SetWindowText(TEXT("{\"deviceId\": \"94211609774260224\"}")); // "token=<Token>"
@@ -89,16 +91,40 @@ void CHTTPRequestDlg::DoDataExchange(CDataExchange* pDX)
 	RestoreDefaults();
 }
 //------------------------------------------------------------------------------------------------------------------------
-void CHTTPRequestDlg::btnProfileClick()
+void CHTTPRequestDlg::ResolveSymbols(CString *s)
 {
-	const char *response;
-	string user_profile = idm_simulator.GetUserProfile();
-	if (user_profile.length() == 0)
-		response = idm_simulator.GetLastError() == iseInvalidSessionToken ? "Error: Get a session token first." : idm_simulator.ErrorMessage();
-	else
-		response = user_profile.c_str();
+	wstring ws = s->GetBuffer();
+	string ns(ws.begin(), ws.end());
 
-	ShowResponse(response, strlen(response));
+	if (idm_simulator.SessionToken()[0] == 0) // empty token
+	{
+		const char *delegate_token = "";
+		GRIDLinkError err = GRIDLinkSDK::Instance()->RequestGRIDAccessToken(&delegate_token);
+		idm_simulator.ObtainSessionToken(delegate_token);
+	}
+
+	// replace <token> and <Token> with the real token
+	for (size_t tkn_pos = 0; (tkn_pos = ns.find("<token>", tkn_pos)) != string::npos;)
+		ns.replace(tkn_pos, 7 /*strlen("<token>")*/, idm_simulator.SessionToken());
+	for (size_t tkn_pos = 0; (tkn_pos = ns.find("<Token>", tkn_pos)) != string::npos;)
+		ns.replace(tkn_pos, 7 /*strlen("<token>")*/, idm_simulator.SessionToken());
+
+	// apply the Base64 conversion ( ie, @b64(...) )
+	for (size_t bpos = 0; (bpos = ns.find("@b64(", bpos)) != string::npos;)
+	{
+		long opened = 1, inp_len = 0;
+		for (const char *chr = ns.c_str() + bpos + 5; opened > 0 && *chr != 0; chr++, inp_len++)
+			if (*chr == '(')
+				opened++;
+			else if (*chr == ')')
+				opened--;
+					
+		string base64 = base64_encode((const unsigned char *)ns.c_str()+bpos+5, inp_len-1);
+		ns.replace(bpos, inp_len + 5, base64);
+	}
+
+	ws.assign(ns.begin(), ns.end());
+	*s = ws.c_str();
 }
 //------------------------------------------------------------------------------------------------------------------------
 void CHTTPRequestDlg::btnGoClick()
@@ -128,9 +154,37 @@ void CHTTPRequestDlg::btnGoClick()
 		txtBody.GetWindowText(req_body);
 		txtHeaders.GetWindowText(req_header);
 
+		ResolveSymbols(&req_body);
+		ResolveSymbols(&req_header);
+
 		CHttpClient http(L"NVidia Sample Game");
 		const char *real_idm_resp = http.Post(given_url.GetBuffer(), req_header.GetBuffer(), req_body.GetBuffer());
 		ShowResponse(real_idm_resp, strlen(real_idm_resp));
 	}
+}
+//------------------------------------------------------------------------------------------------------------------------
+void CHTTPRequestDlg::btnResolveSymbolClick()
+{
+	CString bdy, hdr;
+	txtBody.GetWindowText(bdy);
+	txtHeaders.GetWindowText(hdr);
+
+	ResolveSymbols(&bdy);
+	ResolveSymbols(&hdr);
+	
+	txtBody.SetWindowText(bdy);
+	txtHeaders.SetWindowText(hdr);
+}
+//------------------------------------------------------------------------------------------------------------------------
+void CHTTPRequestDlg::btnProfileClick()
+{
+	const char *response;
+	string user_profile = idm_simulator.GetUserProfile();
+	if (user_profile.length() == 0)
+		response = idm_simulator.GetLastError() == iseInvalidSessionToken ? "Error: Get a session token first." : idm_simulator.ErrorMessage();
+	else
+		response = user_profile.c_str();
+
+	ShowResponse(response, strlen(response));
 }
 //------------------------------------------------------------------------------------------------------------------------
