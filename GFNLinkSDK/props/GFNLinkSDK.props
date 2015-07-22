@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ImportGroup Label="PropertySheets" />
+    <PropertyGroup Label="UserMacros">
+        <GFNLinkSDKDir>$(MSBuildThisFileDirectory)..\</GFNLinkSDKDir>
+	      <!-- IMPORTANT LINKAGE NOTICE:
+		        This props file links to GFNLinkMD.lib, which uses "MultiThreadedDll" (dynamic) CRT linkage (/MD option). 
+	          If your application needs to statically link the CRT libs (uses the /MT or /MTd link options), you'll need
+		        to include the GFNLinkSDK-StaticCRT.props file instead.
+	          Unfortunately, we can't detect what linkage you're using here, as by default Microsoft processes props files
+            prior to defining the linkage for a given configuration.
+	      -->
+        <GFNLinkLibName>GFNLinkMD.lib</GFNLinkLibName>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <AdditionalIncludeDirectories>
+                $(GFNLinkSDKDir)include;
+                %(AdditionalIncludeDirectories)
+            </AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <AdditionalLibraryDirectories>
+                $(GFNLinkSDKDir)lib\$(Platform)_$(PlatformToolset)_$(Configuration);
+                %(AdditionalLibraryDirectories)
+            </AdditionalLibraryDirectories>
+            <AdditionalDependencies>
+                $(GFNLinkLibName);
+                %(AdditionalDependencies)
+            </AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemGroup />
+</Project>
