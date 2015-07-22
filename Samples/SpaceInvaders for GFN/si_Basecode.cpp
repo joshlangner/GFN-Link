@@ -27,8 +27,8 @@ This game has been integrated with Nvidia's GFN (GeForce NOW) SDK and can be con
 #include "commctrl.h"													// Header File For Windows XP Common Controls
 #include "si_Functions.h"												// Header File For The Game Functions
 #include "resource.h"													// Header File For the resources ids
-#include "GRIDLinkSDK_CAPI.hpp"
-using namespace GRIDLinkSDK;
+#include "GFNLinkSDK_CAPI.hpp"
+using namespace GFNLinkSDK;
 
 #define WM_TOGGLEFULLSCREEN (WM_USER+1)									// Application Define Message For Toggling Fullscreen
 
@@ -1922,13 +1922,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	cur_hand		= LoadCursor(application.hInstance, MAKEINTRESOURCE(IDC_CURSOR_HAND));
 	cur_hand_closed	= LoadCursor(application.hInstance, MAKEINTRESOURCE(IDC_CURSOR_HAND_CLOSED));
 
-	// Initialize GRID Link
-	GRIDLinkError grid_init_result = InitializeGRIDLinkSDK();
-	if (grid_init_result == gleGRIDDLLNotPresent)
-		gfn_status = "No Grid.DLL";
+	// Initialize GFN Link
+	GFNLinkError gfn_init_result = InitializeGFNLinkSDK();
+	if (gfn_init_result == gleGFNDLLNotPresent)
+		gfn_status = "No Gfn.DLL";
 	else
 	{
-		if (GRIDLinkSDK::Instance()->IsGRIDEnabled())
+		if (GFNLinkSDK::Instance()->IsGFNEnabled())
 			gfn_status = "Connected";
 		else
 			gfn_status = "Not Connected";
@@ -2046,7 +2046,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 	}																	// While (isProgramLooping)
 
-	GRIDLinkSDK::ShutdownGRIDLinkSDK();
+	GFNLinkSDK::ShutdownGFNLinkSDK();
 	UnregisterClass(application.className, application.hInstance);		// UnRegister Window Class
 	return 0;
 }																		// End Of WinMain()

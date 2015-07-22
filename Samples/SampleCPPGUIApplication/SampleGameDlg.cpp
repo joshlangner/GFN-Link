@@ -112,15 +112,15 @@ BOOL CSampleGameDlg::OnInitDialog()
 
 	CString caption;
 	GetWindowText(caption);
-	if (GRIDLinkSDK::Instance()->IsGRIDEnabled())
+	if (GFNLinkSDK::Instance()->IsGFNEnabled())
 	{
 		connectivity_icon.LoadBitmap(IDB_conn);
-		caption += " (Connected to GRID)";
+		caption += " (Connected to GFN)";
 	}
 	else
 	{
 		connectivity_icon.LoadBitmap(IDB_not_conn);
-		caption += " (NOT connected to GRID)";
+		caption += " (NOT connected to GFN)";
 	}
 	SetWindowText(caption);
 	picConnectivity.SetBitmap(connectivity_icon);
@@ -206,7 +206,7 @@ void CSampleGameDlg::InitListView()
 		{ -1 },
 	};
 	AddColumnsToList(&lv_in_req, req_cols);
-	lv_in_req.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+	lv_in_req.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GFNLINES);
 
 	SColumnDescriptor cmd_cols[] = {
 		{ 22, LVCF_FMT | LVCF_TEXT | LVCF_WIDTH, LVCFMT_LEFT, L"#" },
@@ -215,26 +215,26 @@ void CSampleGameDlg::InitListView()
 		{ -1 },
 	};
 	AddColumnsToList(&lv_sent_cmd, cmd_cols);
-	lv_sent_cmd.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+	lv_sent_cmd.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GFNLINES);
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnKB_OpenClick()
 {
-	AddToCmdList(L"Open Keyboard", GRIDLinkSDK::Instance()->RequestKeyboardOverlayOpen(gspCenter));
+	AddToCmdList(L"Open Keyboard", GFNLinkSDK::Instance()->RequestKeyboardOverlayOpen(gspCenter));
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnKB_CloseClick()
 {
-	AddToCmdList(L"Close Keyboard", GRIDLinkSDK::Instance()->RequestKeyboardOverlayClose());
+	AddToCmdList(L"Close Keyboard", GFNLinkSDK::Instance()->RequestKeyboardOverlayClose());
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnTokenClick()
 {
 	const char *token = "";
-	GRIDLinkError err = GRIDLinkSDK::Instance()->RequestGRIDAccessToken(&token);
+	GFNLinkError err = GFNLinkSDK::Instance()->RequestGFNAccessToken(&token);
 	AddToCmdList(L"Get Token", err, token);
 }
 
@@ -242,14 +242,14 @@ void CSampleGameDlg::btnTokenClick()
 void CSampleGameDlg::btnStorageClick()
 {
 	const char *locaiton = "";
-	GRIDLinkError err = GRIDLinkSDK::Instance()->GetStorageLocation(&locaiton);
+	GFNLinkError err = GFNLinkSDK::Instance()->GetStorageLocation(&locaiton);
 	AddToCmdList(L"Get Storage Location", err, locaiton);
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnNotifyClick()
 {
-	AddToCmdList(L"SC Notification", GRIDLinkSDK::Instance()->NotifyStorageChange());
+	AddToCmdList(L"SC Notification", GFNLinkSDK::Instance()->NotifyStorageChange());
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ void CSampleGameDlg::OnClose()
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *result)
+void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GFNLinkError err, const char *result)
 {
 	wchar_t row_num[20];
 	LVITEM lvItem;
@@ -287,9 +287,9 @@ void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *res
 	{
 		wchar_t err_msg[][40] = {
 			L"OK",	// gleSuccess = 0,
-			L"GRID DLL Not Present !",		 // gleGRIDDLLNotPresent,
-			L"GRID Com Not Established !",	 // gleGRIDComNotEstablished,		// No controller/test application running to connect to.
-			L"GRID Com Error !",			 // gleGRIDComError,
+			L"GFN DLL Not Present !",		 // gleGFNDLLNotPresent,
+			L"GFN Com Not Established !",	 // gleGFNComNotEstablished,		// No controller/test application running to connect to.
+			L"GFN Com Error !",			 // gleGFNComError,
 			L"Error Calling DLL Function !", // gleErrorCallingDLLFunction,		// Generic DLL error - possibly due to incompatible DLL.
 			L"Incompatible Version !",		 // gleIncompatibleVersion,
 			L"Unable To Allocate Memory !",	 // gleUnableToAllocateMemory,

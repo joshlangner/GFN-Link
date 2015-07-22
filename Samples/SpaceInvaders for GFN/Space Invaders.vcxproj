@@ -91,7 +91,7 @@
       <OutputFile>$(TargetPath)</OutputFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
       <DelayLoadDLLs>fmod.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalDependencies>fmodvc.lib;Nvidia\GFN\Win32_v120_Debug\GRIDLinkMD.lib;msvcrtd.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodvc.lib;Nvidia\GFN\Win32_v120_Debug\GFNLinkMD.lib;msvcrtd.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
@@ -134,13 +134,13 @@
       <OutputFile>$(TargetPath)</OutputFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
       <DelayLoadDLLs>fmod.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalDependencies>fmodvc.lib;Nvidia\GFN\Win32_v120_Debug\GRIDLinkMD.lib;msvcrt.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodvc.lib;Nvidia\GFN\Win32_v120_Debug\GFNLinkMD.lib;msvcrt.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Nvidia\GFN\GRIDApplication.cpp" />
+    <ClCompile Include="Nvidia\GFN\GFNApplication.cpp" />
     <ClCompile Include="Nvidia\ScreenShot.cpp" />
     <ClCompile Include="si_3DS.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>

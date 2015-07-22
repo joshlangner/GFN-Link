@@ -5,10 +5,10 @@
 #include <Winhttp.h>
 #include"DlgHTTPRequest.h"
 #include"HttpClient.h"
-#include "GRIDLinkSDK_CAPI.hpp"
+#include "GFNLinkSDK_CAPI.hpp"
 #include "base64.h"
 
-using namespace GRIDLinkSDK;
+using namespace GFNLinkSDK;
 
 
 #ifdef _DEBUG
@@ -99,7 +99,7 @@ void CHTTPRequestDlg::ResolveSymbols(CString *s)
 	if (idm_simulator.SessionToken()[0] == 0) // empty token
 	{
 		const char *delegate_token = "";
-		GRIDLinkError err = GRIDLinkSDK::Instance()->RequestGRIDAccessToken(&delegate_token);
+		GFNLinkError err = GFNLinkSDK::Instance()->RequestGFNAccessToken(&delegate_token);
 		idm_simulator.ObtainSessionToken(delegate_token);
 	}
 
@@ -136,7 +136,7 @@ void CHTTPRequestDlg::btnGoClick()
 	{
 		string success_results = "";
 		const char *simulated_resp, *delegate_token = "";
-		GRIDLinkError err = GRIDLinkSDK::Instance()->RequestGRIDAccessToken(&delegate_token);
+		GFNLinkError err = GFNLinkSDK::Instance()->RequestGFNAccessToken(&delegate_token);
 		if (idm_simulator.ObtainSessionToken(delegate_token))
 			simulated_resp = idm_simulator.ErrorMessage();
 		else

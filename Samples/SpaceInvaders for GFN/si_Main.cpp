@@ -108,7 +108,7 @@ ________________________________________________________________________________
 #include <gl\glu.h>						// Header File For The GLu32 Library
 #include "si_Main.h"					// Header File For game
 #include "si_3DS.h"						// Header File For Game
-#include "GRIDLinkSDK_CAPI.hpp"
+#include "GFNLinkSDK_CAPI.hpp"
 #include "ScreenShot.h"
 
 #ifndef CDS_FULLSCREEN					// CDS_FULLSCREEN Is Not Defined By Some
@@ -715,7 +715,7 @@ void Update (DWORD milliseconds, GL_Window* window)
 	{
 		g_keys->keyDown['k'] = false;
 		g_keys->keyDown['K'] = false;
-		GRIDLinkSDK::Instance()->RequestKeyboardOverlayOpen(GRIDLinkSDK::gspTop);
+		GFNLinkSDK::Instance()->RequestKeyboardOverlayOpen(GFNLinkSDK::gspTop);
 	}
 
 	// Save Game (takes a screenshot ...)
@@ -724,7 +724,7 @@ void Update (DWORD milliseconds, GL_Window* window)
 		gfn_game_save = false;
 		const char *save_path="";
 
-		for (int retries = 0; retries < 4 && GRIDLinkSDK::Instance()->GetStorageLocation(&save_path) != GRIDLinkSDK::gleSuccess; retries++);
+		for (int retries = 0; retries < 4 && GFNLinkSDK::Instance()->GetStorageLocation(&save_path) != GFNLinkSDK::gleSuccess; retries++);
 		char screenshot_path[2000] = { 0 };
 		strcpy(screenshot_path, save_path);
 

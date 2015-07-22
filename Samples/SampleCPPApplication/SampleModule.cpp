@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "GRIDLinkSDK_CAPI.hpp"
+#include "GFNLinkSDK_CAPI.hpp"
 
 extern bool g_MainDone;
 
@@ -19,9 +19,9 @@ void Pause()
 void SaveData()
 {
     // Doesn't really do much since our sample isn't really saving data, but we will
-    // notify GRID that storage has "changed".
+    // notify GFN that storage has "changed".
     printf("Application saved data.\n");
-    GRIDLinkSDK::Instance()->NotifyStorageChange();
+    GFNLinkSDK::Instance()->NotifyStorageChange();
 }
 
 void LockUserGraphicsOptions()
@@ -33,10 +33,10 @@ void LockUserGraphicsOptions()
 bool SetLocale(const char* locale)
 {
     // It would be best if this was implemented without having to restart the application, but a restart is possible 
-    // to implement by returning arFailure to GRID and restarting the application. GRID will retry once the application
+    // to implement by returning arFailure to GFN and restarting the application. GFN will retry once the application
     // restarts.
 
-    // We only support en_US, so anything else returns false which will return "arNotImplemented" to GRID.
+    // We only support en_US, so anything else returns false which will return "arNotImplemented" to GFN.
     if (strcmp(locale, "en_US") == 0)
     {
         printf("Application changed localization settings.\n");

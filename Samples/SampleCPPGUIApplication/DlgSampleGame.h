@@ -5,9 +5,9 @@
 #include "stdafx.h"
 #include <afxcmn.h>
 #include "resource.h"		// main symbols
-#include "GRIDLinkSDK_CAPI.hpp"
+#include "GFNLinkSDK_CAPI.hpp"
 
-using namespace GRIDLinkSDK;
+using namespace GFNLinkSDK;
 
 struct SColumnDescriptor
 {
@@ -63,6 +63,6 @@ public:
 	afx_msg void OnBnClickedbtnclearreceived();
 	afx_msg void OnClose();
 
-	void AddToCmdList(LPWSTR cmd, GRIDLinkError err = gleSuccess, const char *result=NULL);
+	void AddToCmdList(LPWSTR cmd, GFNLinkError err = gleSuccess, const char *result=NULL);
 	void AddToList(LPWSTR, ApplicationResult);
 };

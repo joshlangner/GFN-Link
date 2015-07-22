@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- Autodetect PlatformToolset by Visual Studio version -->
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='12.0'">v120</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)'=='11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='11.0'">v110</PlatformToolset>    
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='10.0'">v100</PlatformToolset>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
@@ -57,23 +57,21 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\GRIDLinkSDK\props\GRIDLinkSDK.props" />
+    <Import Project="..\..\GFNLinkSDK\props\GFNLinkSDK.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\GRIDLinkSDK\props\GRIDLinkSDK.props" />
+    <Import Project="..\..\GFNLinkSDK\props\GFNLinkSDK.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\GRIDLinkSDK\props\GRIDLinkSDK.props" />
+    <Import Project="..\..\GFNLinkSDK\props\GFNLinkSDK.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\GRIDLinkSDK\props\GRIDLinkSDK.props" />
+    <Import Project="..\..\GFNLinkSDK\props\GFNLinkSDK.props" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros">
-    <NuGetPackageImportStamp>761ccf65</NuGetPackageImportStamp>
-  </PropertyGroup>
+  <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\$(Platform)_$(Configuration)\</OutDir>
@@ -156,45 +154,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GRIDApplication.cpp" />
+    <ClCompile Include="GFNApplication.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SampleModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.h" />
-    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.hpp" />
+    <ClInclude Include="..\..\GFNLinkSDK\include\GFNLinkSDK_CAPI.h" />
+    <ClInclude Include="..\..\GFNLinkSDK\include\GFNLinkSDK_CAPI.hpp" />
     <ClInclude Include="SampleModule.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemDefinitionGroup>
     <PostBuildEvent>
-      <Command>copy $(GRIDLinkSDKDir)\dll\$(Platform)_$(Configuration)\*.* $(OutDir)</Command>
+      <Command>copy $(GFNLinkSDKDir)\dll\$(Platform)_$(Configuration)\*.* $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\..\packages\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="..\..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winapp.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphone.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winphonesl.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v120.winxp.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.winapp.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('..\..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.6.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
-  </Target>
 </Project>

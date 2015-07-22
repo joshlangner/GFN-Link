@@ -110,16 +110,16 @@ BOOL CSampleGameDlg::OnInitDialog()
 	CString caption;
 	GetWindowText(caption);
 
-	// Initialize GRID Link
-	GRIDLinkError grid_init_result = InitializeGRIDLinkSDK(); 
-	if (grid_init_result == gleGRIDDLLNotPresent)
+	// Initialize GFN Link
+	GFNLinkError gfn_init_result = InitializeGFNLinkSDK(); 
+	if (gfn_init_result == gleGFNDLLNotPresent)
 	{
-		caption += " (Loading GRID.dll failed)";
+		caption += " (Loading GFN.dll failed)";
 		connectivity_icon.LoadBitmap(IDB_dll_err);
 	}
 	else
 	{
-		if (GRIDLinkSDK::Instance()->IsGRIDEnabled())
+		if (GFNLinkSDK::Instance()->IsGFNEnabled())
 		{
 			connectivity_icon.LoadBitmap(IDB_conn);
 			caption += " (Connected)";
@@ -229,20 +229,20 @@ void CSampleGameDlg::InitListView()
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnKB_OpenClick()
 {
-	AddToCmdList(L"Open Keyboard", GRIDLinkSDK::Instance()->RequestKeyboardOverlayOpen(gspCenter));
+	AddToCmdList(L"Open Keyboard", GFNLinkSDK::Instance()->RequestKeyboardOverlayOpen(gspCenter));
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnKB_CloseClick()
 {
-	AddToCmdList(L"Close Keyboard", GRIDLinkSDK::Instance()->RequestKeyboardOverlayClose());
+	AddToCmdList(L"Close Keyboard", GFNLinkSDK::Instance()->RequestKeyboardOverlayClose());
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnTokenClick()
 {
 	const char *token = "";
-	GRIDLinkError err = GRIDLinkSDK::Instance()->RequestGRIDAccessToken(&token);
+	GFNLinkError err = GFNLinkSDK::Instance()->RequestGFNAccessToken(&token);
 	AddToCmdList(L"Get Token", err, token);
 }
 
@@ -250,14 +250,14 @@ void CSampleGameDlg::btnTokenClick()
 void CSampleGameDlg::btnStorageClick()
 {
 	const char *locaiton = "";
-	GRIDLinkError err = GRIDLinkSDK::Instance()->GetStorageLocation(&locaiton);
+	GFNLinkError err = GFNLinkSDK::Instance()->GetStorageLocation(&locaiton);
 	AddToCmdList(L"Get Storage Location", err, locaiton);
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnNotifyClick()
 {
-	AddToCmdList(L"SC Notification", GRIDLinkSDK::Instance()->NotifyStorageChange());
+	AddToCmdList(L"SC Notification", GFNLinkSDK::Instance()->NotifyStorageChange());
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -282,12 +282,12 @@ void CSampleGameDlg::OnClose()
 {
 	CDialogEx::OnClose();
 
-	// Shutdown GRID Link
-	GRIDLinkSDK::ShutdownGRIDLinkSDK();
+	// Shutdown GFN Link
+	GFNLinkSDK::ShutdownGFNLinkSDK();
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *result)
+void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GFNLinkError err, const char *result)
 {
 	wchar_t row_num[20];
 	LVITEM lvItem;
@@ -303,9 +303,9 @@ void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GRIDLinkError err, const char *res
 	{
 		wchar_t err_msg[][60] = {
 			L"OK",	// gleSuccess = 0,
-			L"Not connected to server, or GRID.dll not Present !",		 // gleGRIDDLLNotPresent,
-			L"GRID Com Not Established !",	 // gleGRIDComNotEstablished,		// No controller/test application running to connect to.
-			L"GRID Com Error !",			 // gleGRIDComError,
+			L"Not connected to server, or GFN.dll not Present !",		 // gleGFNDLLNotPresent,
+			L"GFN Com Not Established !",	 // gleGFNComNotEstablished,		// No controller/test application running to connect to.
+			L"GFN Com Error !",			 // gleGFNComError,
 			L"Error Calling DLL Function !", // gleErrorCallingDLLFunction,		// Generic DLL error - possibly due to incompatible DLL.
 			L"Incompatible Version !",		 // gleIncompatibleVersion,
 			L"Unable To Allocate Memory !",	 // gleUnableToAllocateMemory,
