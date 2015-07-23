@@ -33,4 +33,4 @@ The GFNLink SDK package includes the following:
 * SampleCPPApplication - illustrates a minimal console-based C++ implementation
 * SampleCPPGUIApplication - illustrates a C++ GUI-based implementation with Account Federation 
 
-See https://github.com/camify/GFN-Link/wiki for more details.
+See https://github.com/NVIDIA/GFN-Link/wiki for more details.
