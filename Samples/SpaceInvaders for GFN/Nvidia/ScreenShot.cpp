@@ -1,5 +1,31 @@
 // by: Mohammad Mottaghi (mamad@cs.duke.edu, mmottaghi@nvidia.com)
 
+/* Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of NVIDIA CORPORATION nor the names of its
+     contributors may be used to endorse or promote products derived
+     from this software without specific prior written permission.
+ 
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS "AS IS" AND ANY
+  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+  OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+
 #define WIN32_LEAN_AND_MEAN			
 
 #include <windows.h>				
@@ -16,31 +42,26 @@ int CaptureAnImage(HWND hWnd, const char * image_file_path)
 	try
 	{
 		hdcMemDC = CreateCompatibleDC(hdcWindow);
-
 		if (!hdcMemDC)
-			throw 1; // MessageBox(hWnd, "CreateCompatibleDC has failed", "Failed", MB_OK);
+			throw 1; 
 
-		// Get the client area for size calculation
 		RECT rcClient;
 		GetClientRect(hWnd, &rcClient);
 
-		//This is the best stretch mode
 		SetStretchBltMode(hdcWindow, HALFTONE);
-
-		//The source DC is the entire screen and the destination DC is the current window (HWND)
 		if (!StretchBlt(hdcWindow, 0, 0, rcClient.right, rcClient.bottom, hdcScreen, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SRCCOPY))
-			throw 2; //  MessageBox(hWnd, "StretchBlt has failed", "Failed", MB_OK);
+			throw 2; 
 
 		HBITMAP hbmScreen = NULL;
 		hbmScreen = CreateCompatibleBitmap(hdcWindow, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top);
 
 		if (!hbmScreen)
-			throw 3; //  MessageBox(hWnd, "CreateCompatibleBitmap Failed", "Failed", MB_OK);
+			throw 3; 
 
 		SelectObject(hdcMemDC, hbmScreen);
 
 		if (!BitBlt(hdcMemDC, 0, 0, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top, hdcWindow, 0, 0, SRCCOPY))
-			throw 4; // MessageBox(hWnd, "BitBlt has failed", "Failed", MB_OK);
+			throw 4; 
 	
 		BITMAP bmpScreen;
 		GetObject(hbmScreen, sizeof(BITMAP), &bmpScreen);	// Get the BITMAP from the HBITMAP
@@ -62,14 +83,9 @@ int CaptureAnImage(HWND hWnd, const char * image_file_path)
 
 		DWORD dwBmpSize = ((bmpScreen.bmWidth * bi.biBitCount + 31) / 32) * 4 * bmpScreen.bmHeight;
 
-		// Starting with 32-bit Windows, GlobalAlloc and LocalAlloc are implemented as wrapper functions that 
-		// call HeapAlloc using a handle to the process's default heap. Therefore, GlobalAlloc and LocalAlloc 
-		// have greater overhead than HeapAlloc.
 		HANDLE hDIB = GlobalAlloc(GHND, dwBmpSize);
 		char *lpbitmap = (char *)GlobalLock(hDIB);
 
-		// Gets the "bits" from the bitmap and copies them into a buffer 
-		// which is pointed to by lpbitmap.
 		GetDIBits(hdcWindow, hbmScreen, 0, (UINT)bmpScreen.bmHeight, lpbitmap, (BITMAPINFO *)&bi, DIB_RGB_COLORS);
 
 		DWORD dwSizeofDIB = dwBmpSize + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
@@ -94,13 +110,7 @@ int CaptureAnImage(HWND hWnd, const char * image_file_path)
 	}
 	catch (int e)
 	{
-		char exc_msg[][50] = {
-			"",
-			"CreateCompatibleDC has failed",
-			"StretchBlt has failed",
-			"CreateCompatibleBitmap Failed",
-			"BitBlt has failed"
-		};
+		char exc_msg[][50] = {"", "CreateCompatibleDC has failed", "StretchBlt has failed", "CreateCompatibleBitmap Failed", "BitBlt has failed"};
 		MessageBox(hWnd, exc_msg[e], "Screenshot Failed", MB_OK);
 	}
 
