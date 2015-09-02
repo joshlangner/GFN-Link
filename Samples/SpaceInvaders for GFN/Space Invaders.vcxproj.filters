@@ -68,8 +68,8 @@
     <ClCompile Include="Nvidia\ScreenShot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nvidia\GFN\GRIDApplication.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Nvidia\GFN\GFNApplication.cpp">
+      <Filter>Source Files\3DS Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -384,9 +384,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="images\bitmap1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\Users\mmottaghi\_Desktop\game_startup.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
