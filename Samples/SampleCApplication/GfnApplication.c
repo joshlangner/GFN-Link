@@ -36,7 +36,7 @@
 //
 // ===========================================================================================
 
-#include "GRIDLinkSDK_CAPI.h"
+#include "GFNLinkSDK_CAPI.h"
 #include "SampleModule.h"
 
 /// <summary>
@@ -45,7 +45,7 @@
 /// <returns>
 /// arSuccess - application activity was successfully paused
 /// arFailure - application activity couldn't be paused
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glRequestApplicationPause()
 {
@@ -59,7 +59,7 @@ ApplicationResult glRequestApplicationPause()
 /// <returns>
 /// arSuccess - application saved user's progress
 /// arFailure - application couldn't save user's progress
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glRequestApplicationSave()
 {
@@ -73,7 +73,7 @@ ApplicationResult glRequestApplicationSave()
 /// <returns>
 /// arSuccess - application exited
 /// arFailure - application couldn't exit
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glRequestApplicationExit()
 {
@@ -87,7 +87,7 @@ ApplicationResult glRequestApplicationExit()
 /// <returns>
 /// arSuccess - application successfully disabled specified user options
 /// arFailure - application failed to disable specified user options
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glLockUserOptions(UserOptions uoOptions)
 {
@@ -102,12 +102,14 @@ ApplicationResult glLockUserOptions(UserOptions uoOptions)
 /// <returns>
 /// arSuccess - application set specified language
 /// arFailure -  application failed to set specified language
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glSetLocale(const char* pchlanguageCode)
 {
-    SetLocale(pchlanguageCode);
-	return arSuccess;
+	if (SetLocale(pchlanguageCode))
+		return arSuccess;
+
+	return arNotImplemented;
 }
 
 /// <summary>
@@ -116,7 +118,7 @@ ApplicationResult glSetLocale(const char* pchlanguageCode)
 /// <returns>
 /// arSuccess - successfully determined if an update is required or not
 /// arFailure - failed to determine if updated is required or not
-/// arNotImplemented
+/// arNotImplemented - not implemented by the developer
 /// </returns>
 ApplicationResult glIsUpdateRequired(bool* pbUpdate)
 {

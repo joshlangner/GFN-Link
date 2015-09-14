@@ -8,7 +8,7 @@
     <Filter Include="Developer Files">
       <UniqueIdentifier>{d03c6f1d-6c49-4178-b16d-5e9350aaddd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Developer GRID Link Implementation">
+    <Filter Include="Developer GFN Link Implementation">
       <UniqueIdentifier>{a0cdc0a3-ef5b-4301-85cf-75ff12ed644b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -19,18 +19,18 @@
     <ClCompile Include="SampleModule.cpp">
       <Filter>Developer Files</Filter>
     </ClCompile>
-    <ClCompile Include="GRIDApplication.cpp">
-      <Filter>Developer GRID Link Implementation</Filter>
+    <ClCompile Include="GFNApplication.cpp">
+      <Filter>Developer GFN Link Implementation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SampleModule.h">
       <Filter>Developer Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.h">
+    <ClInclude Include="..\..\GFNLinkSDK\include\GFNLinkSDK_CAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\GRIDLinkSDK\include\GRIDLinkSDK_CAPI.hpp">
+    <ClInclude Include="..\..\GFNLinkSDK\include\GFNLinkSDK_CAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

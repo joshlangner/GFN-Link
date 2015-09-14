@@ -17,107 +17,83 @@
 //
 // ===========================================================================================
 
-#include "GRID_LinkSDK_CAPI.h"
+#include "GFNLinkSDK_CAPI.h"
 
 /// <summary>
-/// Returns the version of the application currently installed on the client machine.
+/// Request to pause application activity
 /// </summary>
-/// <output>
-/// string representation of the application's version.
-/// </output>
 /// <returns>
-/// Success if version known, NotImplemented if not implemented
+/// arSuccess - application activity was successfully paused
+/// arFailure - application activity couldn't be paused
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkGetInstalledVersion(wchar_t* versionStr, int bufferLen)
+ApplicationResult glRequestApplicationPause()
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }
 
 /// <summary>
-/// Returns the version of the newest version available for download/patching
+/// Request to save user progress
 /// </summary>
-/// <output>
-/// string representation of the newest available version.
-/// </output>
 /// <returns>
-/// Success if version found, Failure if not. NotImplemented if not implemented
+/// arSuccess - application saved user's progress
+/// arFailure - application couldn't save user's progress
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkGetNewestVersion(wchar_t* versionStr, int bufferLen)
+ApplicationResult glRequestApplicationSave()
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }
 
 /// <summary>
-/// Initiates a patch update.
+/// Request to exit application
 /// </summary>
-/// <remarks>
-/// This is an asynchronous call. The application should trigger a patch update when 
-/// this call is made. When the update is complete, the application should call
-/// GridApplication.SDKInterface.PatchingDone();
-/// Note that it isn't necessary that the same process calls the return method,
-/// so if an application needs to restart as part of the patch process, it can
-/// call this one it initializes the grid SDK.
-/// </remarks>
 /// <returns>
-/// Success if patching was started. NotImplemented if not implemented
+/// arSuccess - application exited
+/// arFailure - application couldn't exit
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkStartPatching()
+ApplicationResult glRequestApplicationExit()
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }
 
 /// <summary>
-/// Initiates a user login request
+/// Used by GRID to disable certain user options that may impact their GRID experience.
 /// </summary>
-/// <remarks>
-/// Initiates either a native login or grid login request. 
-/// This is an asynchronous call so does not need to wait until login has completed.
-/// </remarks>
-/// <param name="gridLogin">True if logging in through grid, false if native</param>
-/// <param name="username">Username registered with native app</param>
-/// <param name="authToken">Grid auth token if grid login, password if native login</param>
 /// <returns>
-/// Success if login is supported. NotImplemented if not implemented
+/// arSuccess - application successfully disabled specified user options
+/// arFailure - application failed to disable specified user options
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkRequestUserLogin(bool gridLogin, const wchar_t* username, const wchar_t* authToken)
+ApplicationResult glLockUserOptions(UserOptions uoOptions)
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }
 
 /// <summary>
-/// Attempts to create a new user account native for this application
+/// Set application's locale according to specified language code.
+/// Follows ISO 639-1 and ISO 3166-1 standards.
 /// </summary>
-/// <remarks>
-/// This is an asynchronous call so does not need to wait until registration has completed.
-/// Only supports login through grid. The username passed will be the requested 
-/// username, which will default to the grid username. For best results the app
-/// should enforce unique user names only within the grid namespace.
-/// The application should call
-/// </remarks>
-/// <param name="requestedUsername">Desired username</param>
-/// <param name="authToken">Grid supplied authentication token</param>
 /// <returns>
-/// Success if registration is supported. NotImplemented if not implemented
+/// arSuccess - application set specified language
+/// arFailure -  application failed to set specified language
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkRequestUserRegistration(const wchar_t* requestedUsername, const wchar_t* authToken)
+ApplicationResult glSetLocale(const char* pchlanguageCode)
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }
 
 /// <summary>
-/// Requests application save data and shut down.
+/// Determines if application requires an update or patch.
 /// </summary>
-/// <remarks>
-/// If a user disconnects from Grid while using an application, the application will have 
-/// no way to know this, as it will continue to run on the virtual machine. Without this,
-/// Grid is forced to kill the application in order to shut it down, which is not always
-/// a good idea. Implement this if you want your application to do anything special before
-/// shutting down, such as saving off user data. The application should then exit.
-/// </remarks>
 /// <returns>
-/// Success if external shutdown is supported. NotImplemented if not.
+/// arSuccess - successfully determined if an update is required or not
+/// arFailure - failed to determine if updated is required or not
+/// arNotImplemented - not implemented by the developer
 /// </returns>
-GridHostResult gsdkRequestApplicationExit()
+ApplicationResult glIsUpdateRequired(bool* pbUpdate)
 {
-    return GridHostResult::NotImplemented;
+	return arNotImplemented;
 }

@@ -51,7 +51,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application activity was successfully paused
 		/// arFailure - application activity couldn't be paused
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::RequestApplicationPause()
 		{
@@ -66,7 +66,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application saved user's progress
 		/// arFailure - application couldn't save user's progress
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::RequestApplicationSave()
 		{
@@ -81,7 +81,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application exited
 		/// arFailure - application couldn't exit
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::RequestApplicationExit()
 		{
@@ -96,7 +96,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application successfully disabled specified user options
 		/// arFailure - application failed to disable specified user options
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::LockUserOptions(UserOptions uoOptions)
 		{
@@ -114,13 +114,13 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application set specified language
 		/// arFailure -  application failed to set specified language
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::SetLocale(const char* pchlanguageCode)
 		{
 			wchar_t inp_cmd[200];
 			wsprintf(inp_cmd, L"Locale = %S", pchlanguageCode);
-			ApplicationResult res = arFailure;
+			ApplicationResult res = arNotImplemented;
 			if (strcmp(pchlanguageCode, "en_US") == 0)
 				res = arSuccess;
 			theAppDlg->AddToList(inp_cmd, res);
@@ -133,7 +133,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - successfully determined if an update is required or not
 		/// arFailure - failed to determine if updated is required or not
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer
 		/// </returns>
 		ApplicationResult GFNApplication::IsUpdateRequired(bool* pbUpdate)
 		{

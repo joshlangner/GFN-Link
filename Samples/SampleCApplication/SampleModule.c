@@ -25,7 +25,8 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include <stdio.h>
-#include "GRIDLinkSDK_CAPI.h"
+#include <string.h>
+#include "GFNLinkSDK_CAPI.h"
 
 extern bool g_MainDone;
 
@@ -62,7 +63,7 @@ bool SetLocale(const char* locale)
     // restarts.
 
     // We only support en_US, so anything else returns false which will return "arNotImplemented" to GRID.
-    if (locale == "en_US")
+    if (strcmp(locale,"en_US") == 0)
     {
         printf("Application changed localization settings.\n");
         return true;

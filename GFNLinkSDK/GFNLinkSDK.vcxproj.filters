@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="stubs\C++ stubs\GRIDApplication.cpp">
-      <Filter>stubs\C++ stubs</Filter>
-    </ClCompile>
-    <ClCompile Include="stubs\C stubs\GRIDApplication.c">
+    <ClCompile Include="stubs\C stubs\GFNApplication.c">
       <Filter>stubs\C stubs</Filter>
     </ClCompile>
+    <ClCompile Include="stubs\C++ stubs\GFNApplication.cpp">
+      <Filter>stubs\C++ stubs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\GRIDLinkSDK_CAPI.h">
+    <ClInclude Include="include\GFNLinkSDK_CAPI.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\GRIDLinkSDK_CAPI.hpp">
+    <ClInclude Include="include\GFNLinkSDK_CAPI.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="props\GRIDLinkSDK.props">
+    <None Include="GFNLink_README.txt" />
+    <None Include="props\GFNLinkSDK.props">
       <Filter>props</Filter>
     </None>
-    <None Include="stubs\NET stubs\GridApplication.cs">
+    <None Include="props\GFNLinkSDKMT.props">
+      <Filter>props</Filter>
+    </None>
+    <None Include="stubs\NET stubs\GfnApplication.cs">
       <Filter>stubs\.NET stubs</Filter>
-    </None>
-    <None Include="GRIDLink_README.txt" />
-    <None Include="props\GRIDLinkSDKMT.props">
-      <Filter>props</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

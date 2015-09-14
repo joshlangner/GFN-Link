@@ -63,7 +63,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// Another sample call:
 	const char* pzCSLocation;
-	if (GFNLinkSDK::Instance()->GetStorageLocation(&pzCSLocation) == 0)
+	if (GFNLinkSDK::Instance()->GetStorageLocation(&pzCSLocation) == GFNLinkSDK::gleSuccess)
 	{
 		printf("Gfn CloudSave location: %s\n", pzCSLocation);
 	}

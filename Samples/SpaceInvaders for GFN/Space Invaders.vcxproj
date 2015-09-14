@@ -95,6 +95,9 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_$(Configuration)\*.*" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -138,6 +141,9 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_$(Configuration)\*.*" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Nvidia\GFN\GFNApplication.cpp" />

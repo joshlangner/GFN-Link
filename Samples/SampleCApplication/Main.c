@@ -27,29 +27,29 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <windows.h>            // For GetAsyncKeyState
-#include "GRIDLinkSDK_CAPI.h"
+#include "GFNLinkSDK_CAPI.h"
 
 bool g_MainDone = false;
 
-// Example Application initialization method with call to GRIDLink SDK initialization
+// Example Application initialization method with call to GFNLink SDK initialization
 void ApplicationInitialize()
 {
-    // Initialize GRIDLink using the C calling convention.
-    glInitializeGRIDLinkSDK();
+    // Initialize GFNLink using the C calling convention.
+    glInitializeGFNLinkSDK();
 
     // Application Initialization
 }
 
-// Example Application shutdown method with call to GRIDLink SDK shutdown
+// Example Application shutdown method with call to GFNLink SDK shutdown
 void ApplicationShutdown()
 {
     printf("\n\nApplication: Shutting down...\n");
 
     // Application Shutdown
 
-    // Shutdown GRIDLink
-    // It's safe to call ShutdownGRIDLinkSDK even if the SDK was not initialized.
-    glShutdownGRIDLinkSDK();
+    // Shutdown GFNLink
+    // It's safe to call ShutdownGFNLinkSDK even if the SDK was not initialized.
+    glShutdownGFNLinkSDK();
 }
 
 // Example Application Main
@@ -61,12 +61,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	ApplicationInitialize();
 
     // Sample C API call
-    bGridEnabled = glIsGRIDEnabled();
+    bGridEnabled = glIsGFNEnabled();
     printf("GRID Enabled: %s\n", (bGridEnabled == true) ? "true" : "false");
 
     // Another sample call:
 
-    if (glGetStorageLocation(&pzCSLocation) == 0)
+	if (glGetStorageLocation(&pzCSLocation) == gleSuccess)
     {
         printf("Grid CloudSave location: %s\n", pzCSLocation);
     }
