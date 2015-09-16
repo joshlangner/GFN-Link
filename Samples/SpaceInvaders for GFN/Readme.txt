@@ -1,4 +1,11 @@
 
+  NV Space Invaders OpenGL 0.6.1                                2015-July
+  .......................................................................
+  This game was made GFN-aware as a domonstration of using GFN-Link SDK 
+  to  enable the interaction between the GFN service and the video game.
+  .......................................................................
+
+  
   Space Invaders OpenGL 0.6.1                                    2004-May
   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
  

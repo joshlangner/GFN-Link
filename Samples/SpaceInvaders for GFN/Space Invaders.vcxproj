@@ -276,6 +276,7 @@
     <Image Include="images\game_startup.bmp" />
     <Image Include="images\game_startup_internet.bmp" />
     <Image Include="images\game_startup_internet_over.bmp" />
+    <Image Include="images\game_startup__nv.bmp" />
     <Image Include="images\hiscore.bmp" />
     <Image Include="images\icon_app.ico" />
     <Image Include="images\icon_music.ico" />
