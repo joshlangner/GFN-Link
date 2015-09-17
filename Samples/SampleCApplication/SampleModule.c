@@ -58,10 +58,6 @@ void LockUserGraphicsOptions()
 
 bool SetLocale(const char* locale)
 {
-    // It would be best if this was implemented without having to restart the application, but a restart is possible 
-    // to implement by returning arFailure to GRID and restarting the application. GRID will retry once the application
-    // restarts.
-
     // We only support en_US, so anything else returns false which will return "arNotImplemented" to GRID.
     if (strcmp(locale,"en_US") == 0)
     {
