@@ -24,9 +24,6 @@
     <None Include="props\GFNLinkSDKMT.props">
       <Filter>props</Filter>
     </None>
-    <None Include="stubs\NET stubs\GfnApplication.cs">
-      <Filter>stubs\.NET stubs</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

@@ -93,8 +93,25 @@ namespace GFNLinkSDK
 		/// <returns>gleSuccess on Success, error code otherwise</returns>
         virtual GFNLinkError RequestGFNAccessToken(const char** ppchToken) = 0;
 
+        /// <summary>
+        /// Obtain a 3rd party token, set by 3rd party providers using the Set method below
+        /// GFNLink manages memory, it is not necessary to preallocate a buffer or delete.
+        /// </summary>
+        /// <params>pchProviderId   - pointer to string id of the 3rd party provider</params>
+        /// <params>ppchToken (out) - pointer to token returned by this method</params>
+        /// <returns>gleSuccess on success, error code otherwise</returns>
+        virtual GFNLinkError Request3rdPartyToken(const char* pchProviderId, const char** ppchToken) = 0;
+
+        /// <summary>
+        /// Sets a 3rd party token, can be ready by the Request method above.
+        /// </summary>
+        /// <params>pchProviderId   - pointer to string id of the 3rd party provider</params>
+        /// <params>pchToken        - pointer to token to be set by this method</params>
+        /// <returns>gleSuccess on success, error code otherwise</returns>
+        virtual GFNLinkError Set3rdPartyToken(const char* pchProviderId, const char* pchToken) = 0;
+
 		/// <summary>
-		/// Provides a storage location for GFN cloud save data (persistant user data)
+		/// Provides a storage location for GFN cloud save data (persistent user data)
 		/// </summary>
         /// <params>ppchStoragePath (out) - Path to storage directory</params>
         /// <returns>gleSuccess on Success, error code otherwise</returns>
@@ -127,7 +144,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application activity was successfully paused
 		/// arFailure - application activity couldn't be paused
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult RequestApplicationPause() { return arNotImplemented; };
 
@@ -137,7 +154,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application saved user's progress
 		/// arFailure - application couldn't save user's progress
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult RequestApplicationSave() { return arNotImplemented; };
 
@@ -147,7 +164,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application exited
 		/// arFailure - application couldn't exit
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult RequestApplicationExit() { return arNotImplemented; };
 
@@ -158,7 +175,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application successfully disabled specified user options
 		/// arFailure - application failed to disable specified user options
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult LockUserOptions(UserOptions uoOptions) { return arNotImplemented; };
 
@@ -170,7 +187,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - application set specified language
 		/// arFailure -  application failed to set specified language
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult SetLocale(const char* pchlanguageCode) { return arNotImplemented; };
 
@@ -181,7 +198,7 @@ namespace GFNLinkSDK
 		/// <returns>
 		/// arSuccess - successfully determined if an update is required or not
 		/// arFailure - failed to determine if updated is required or not
-		/// arNotImplemented
+		/// arNotImplemented - not implemented by the developer 
 		/// </returns>
 		virtual ApplicationResult IsUpdateRequired(bool* pbUpdate) { return arNotImplemented; };
 	};
