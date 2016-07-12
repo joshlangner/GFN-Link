@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "afxdialogex.h"
 #include <string>
 

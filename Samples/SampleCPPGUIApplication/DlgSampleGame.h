@@ -81,8 +81,10 @@ public:
 	CListCtrl lv_sent_cmd;
 	CStatic grbxCommands;
 	CStatic picConnectivity;
-	afx_msg void btnTokenClick();
-	afx_msg void btnStorageClick();
+    afx_msg void btnTokenClick();
+    afx_msg void btnReq3PTokenClick();
+    afx_msg void btnSet3PTokenClick();
+    afx_msg void btnStorageClick();
 	afx_msg void btnNotifyClick();
 	afx_msg void OnBnClickedbtnAuth();
 	afx_msg void OnBnClickedbtnclearsent();

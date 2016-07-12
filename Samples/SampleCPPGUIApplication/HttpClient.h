@@ -27,6 +27,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 
+#include "stdafx.h"
 #include "afxdialogex.h"
 #include <Winhttp.h>
 #include<string>
@@ -40,7 +41,7 @@ class CHttpClient
 {
 private:
 	int last_err_code;
-	HINTERNET  hSession = NULL;
+	HINTERNET  hSession;
 	string response;
 
 	void StoreErrorCode() { last_err_code = GetLastError(); }

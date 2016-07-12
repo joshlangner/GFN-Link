@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- Autodetect PlatformToolset by Visual Studio version -->
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='12.0'">v120</PlatformToolset>
@@ -36,6 +36,46 @@
     <ClInclude Include="..\..\GFNLinkSDK\include\GFNLinkSDK_CAPI.h" />
     <ClInclude Include="SampleModule.h" />
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="InstallDll.bat">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Installing GFN.Dll</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="RemoveDll.bat">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Removing GFN.dll</Message>
+    </CustomBuild>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{006C7734-CCBB-43B1-B46F-E81DCE1CB81A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -47,12 +87,14 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -60,6 +102,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -67,6 +110,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

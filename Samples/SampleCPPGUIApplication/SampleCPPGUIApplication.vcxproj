@@ -106,9 +106,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS; _CRT_SECURE_NO_WARNINGS; _DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -132,9 +132,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS; _CRT_SECURE_NO_WARNINGS; _DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -153,12 +153,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS; _CRT_SECURE_NO_WARNINGS; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -183,12 +183,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS; _CRT_SECURE_NO_WARNINGS; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -215,6 +215,7 @@
     <ClInclude Include="SampleGame.h" />
     <ClInclude Include="DlgSampleGame.h" />
     <ClInclude Include="IDMSimulator.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base64.cpp" />
@@ -235,7 +236,44 @@
     <Image Include="res\SampleGame.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <CustomBuild Include="InstallDll.bat">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Installing GFN.Dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Installing GFN.Dll</Message>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="RemoveDll.bat">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">RemoveDll.bat $(Platform) $(Configuration)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(TargetDir)\GFN.dll</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Removing GFN.dll</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Removing GFN.dll</Message>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

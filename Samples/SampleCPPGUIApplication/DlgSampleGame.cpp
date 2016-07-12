@@ -91,7 +91,9 @@ BEGIN_MESSAGE_MAP(CSampleGameDlg, CDialogEx)
 	ON_BN_CLICKED(btnKB_Open, &CSampleGameDlg::btnKB_OpenClick)
 	ON_BN_CLICKED(btnKB_Close, &CSampleGameDlg::btnKB_CloseClick)
 	ON_BN_CLICKED(btnToken, &CSampleGameDlg::btnTokenClick)
-	ON_BN_CLICKED(btnStorage, &CSampleGameDlg::btnStorageClick)
+    ON_BN_CLICKED(btnReq3PToken, &CSampleGameDlg::btnReq3PTokenClick)
+    ON_BN_CLICKED(btnSet3PToken, &CSampleGameDlg::btnSet3PTokenClick)
+    ON_BN_CLICKED(btnStorage, &CSampleGameDlg::btnStorageClick)
 	ON_BN_CLICKED(btnNotify, &CSampleGameDlg::btnNotifyClick)
 	ON_BN_CLICKED(btnClearSent, &CSampleGameDlg::OnBnClickedbtnclearsent)
 	ON_BN_CLICKED(btnClearReceived, &CSampleGameDlg::OnBnClickedbtnclearreceived)
@@ -273,6 +275,21 @@ void CSampleGameDlg::btnTokenClick()
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
+void CSampleGameDlg::btnReq3PTokenClick()
+{
+    const char *token = "";
+    GFNLinkError err = GFNLinkSDK::Instance()->Request3rdPartyToken("test", &token);
+    AddToCmdList(L"Get 3P Token", err, token);
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+void CSampleGameDlg::btnSet3PTokenClick()
+{
+    GFNLinkError err = GFNLinkSDK::Instance()->Set3rdPartyToken("test", "HHHH");
+    AddToCmdList(L"Set 3P Token", err);
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
 void CSampleGameDlg::btnStorageClick()
 {
 	const char *locaiton = "";
@@ -336,8 +353,10 @@ void CSampleGameDlg::AddToCmdList(LPWSTR cmd, GFNLinkError err, const char *resu
 			L"Incompatible Version !",		 // gleIncompatibleVersion,
 			L"Unable To Allocate Memory !",	 // gleUnableToAllocateMemory,
 			L"Invalid Parameter !", // gleInvalidParameter,
-			L"Internal Error !",	// gleInternalError
-		};
+            L"Internal Error !",	// gleInternalError
+            L"Unsupported API call !",	// gleUnsupportedAPICall
+            L"Invalid token !",	// gleInvalidToken
+        };
 
 		lv_sent_cmd.SetItemText(nItem, 2, err_msg[err]);
 	}

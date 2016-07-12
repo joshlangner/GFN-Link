@@ -45,6 +45,9 @@
     <ClInclude Include="Base64.h">
       <Filter>Developer Files</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Developer Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\connected.bmp">
@@ -77,6 +80,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <CustomBuild Include="RemoveDll.bat" />
+    <CustomBuild Include="InstallDll.bat" />
   </ItemGroup>
 </Project>

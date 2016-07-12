@@ -32,4 +32,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="InstallDll.bat" />
+    <CustomBuild Include="RemoveDll.bat" />
+  </ItemGroup>
 </Project>
