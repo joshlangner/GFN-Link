@@ -118,10 +118,17 @@ namespace GFNLinkSDK
         virtual GFNLinkError GetStorageLocation(const char** ppchStoragePath) = 0;
 
 		/// <summary>
-		/// Notified GFN that saving of data is complete and that data should be uploaded.
+		/// Notifies GFN that saving of data is complete and that data should be uploaded.
 		/// </summary>
         /// <returns>gleSuccess on Success, error code otherwise</returns>
 		virtual GFNLinkError NotifyStorageChange() = 0;
+
+        /// <summary>
+        /// Notifies GFN link that an error occurred in the application
+        /// </summary>
+        /// <params>appError        - application error code</params>
+        /// <returns>gleSuccess on Success, error code otherwise</returns>
+        virtual GFNLinkError NotifyErrorEncountered(GFNLinkAppError appError, const char* pchErrorMessage) = 0;
 	};
 
 	// This returns an instantiated IGFNLink object, from which the above methods can be called.

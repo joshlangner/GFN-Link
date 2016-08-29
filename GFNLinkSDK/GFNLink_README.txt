@@ -1,4 +1,4 @@
-GFNLink Copyright © 2013-2016 NVIDIA Corporation. All rights reserved.
+GFNLink Copyright © 2013-2015 NVIDIA Corporation. All rights reserved.
 
 The GFNLink SDK package includes the following:
 
@@ -20,3 +20,5 @@ Samples                     SampleCApplication - illustrates a minimal C impleme
                             SampleCPPApplication - illustrates a minimal C++ implementation
                             SampleCPPGUIApplication - illustrates a C++ implementation with a GUI interface
                             SampleCSharpApplication - illustrates a minimal C# implementation 
+
+See "GFN Link SDK.docx" for more details.

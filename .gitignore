@@ -10,6 +10,13 @@ tmp/
 *.tmp
 *.bak
 *.swp
+*.sdf
+*.suo
+*.pdb
+*.ilk
+*.zip
+*\Managed\*
+*\bin\*Debug\*
 *~.nib
 local.properties
 .classpath

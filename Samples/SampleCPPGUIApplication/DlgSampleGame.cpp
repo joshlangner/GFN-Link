@@ -94,8 +94,9 @@ BEGIN_MESSAGE_MAP(CSampleGameDlg, CDialogEx)
     ON_BN_CLICKED(btnReq3PToken, &CSampleGameDlg::btnReq3PTokenClick)
     ON_BN_CLICKED(btnSet3PToken, &CSampleGameDlg::btnSet3PTokenClick)
     ON_BN_CLICKED(btnStorage, &CSampleGameDlg::btnStorageClick)
-	ON_BN_CLICKED(btnNotify, &CSampleGameDlg::btnNotifyClick)
-	ON_BN_CLICKED(btnClearSent, &CSampleGameDlg::OnBnClickedbtnclearsent)
+    ON_BN_CLICKED(btnNotify, &CSampleGameDlg::btnNotifyClick)
+    ON_BN_CLICKED(btnNotifyErr, &CSampleGameDlg::btnNotifyErrClick)
+    ON_BN_CLICKED(btnClearSent, &CSampleGameDlg::OnBnClickedbtnclearsent)
 	ON_BN_CLICKED(btnClearReceived, &CSampleGameDlg::OnBnClickedbtnclearreceived)
 	ON_BN_CLICKED(btnAuth, &CSampleGameDlg::OnBnClickedbtnAuth)
 	ON_WM_TIMER()
@@ -301,6 +302,12 @@ void CSampleGameDlg::btnStorageClick()
 void CSampleGameDlg::btnNotifyClick()
 {
 	AddToCmdList(L"SC Notification", GFNLinkSDK::Instance()->NotifyStorageChange());
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+void CSampleGameDlg::btnNotifyErrClick()
+{
+    AddToCmdList(L"Error Notification", GFNLinkSDK::Instance()->NotifyErrorEncountered(glaeCriticalApplicationError, "Error message"));
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------

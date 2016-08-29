@@ -41,13 +41,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)bin\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)bin\$(configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin\$(configuration)</IntDir>
+    <OutDir>$(ProjectDir)bin\$(configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -58,13 +58,12 @@
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <PreprocessorDefinitions>_DEBUG;CONFIG_FMOD_EXTRACT_YES;WIN32;_WINDOWS;_WIN32_WINDOWS=0x0410;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;CONFIG_FMOD_EXTRACT_YES;WIN32;_WINDOWS;_WIN32_WINDOWS=0x0410;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
       <PrecompiledHeaderOutputFile>.\bin\Debug\Space Invaders.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>$(OutDir)</ObjectFileName>
-      <ProgramDataBaseFileName>.\bin\Debug\</ProgramDataBaseFileName>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <AdditionalOptions> /EHsc </AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\..\..\GFNLinkSDK\include;$(MSBuildProjectDirectory)\Nvidia;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -82,22 +81,26 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\bin\Debug\Space Invaders.bsc</OutputFile>
+      <OutputFile>.\obj\Debug\Space Invaders.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(intDir)$(projectName).exe</OutputFile>
+      <OutputFile>$(OutDir)$(projectName).exe</OutputFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
       <DelayLoadDLLs>fmod.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <AdditionalDependencies>fmodvc.lib;..\..\GFNLinkSDK\lib\Win32_v120_Debug\GFNLinkMD.lib;msvcrtd.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>4075</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_$(Configuration)\*.*" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_Release\*.*" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>xcopy  /y "fmod.dll" "$(OutDir)"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -108,12 +111,10 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <StringPooling>true</StringPooling>
-      <PreprocessorDefinitions>NDEBUG;CONFIG_FMOD_EXTRACT_YES;WIN32;_WINDOWS;_WIN32_WINDOWS=0x0410;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
-      <BrowseInformation>true</BrowseInformation>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;CONFIG_FMOD_EXTRACT_YES;WIN32;_WINDOWS;_WIN32_WINDOWS=0x0410;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\bin\Release\Space Invaders.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>$(OutDir)</ObjectFileName>
-      <ProgramDataBaseFileName>.\bin\Release\</ProgramDataBaseFileName>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\..\..\GFNLinkSDK\include;$(MSBuildProjectDirectory)\Nvidia;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
@@ -129,21 +130,25 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\bin\Release\Space Invaders.bsc</OutputFile>
+      <OutputFile>.\obj\Release\Space Invaders.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(intDir)$(projectName).exe</OutputFile>
+      <OutputFile>$(OutDir)$(projectName).exe</OutputFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
       <DelayLoadDLLs>fmod.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <AdditionalDependencies>fmodvc.lib;..\..\GFNLinkSDK\lib\Win32_v120_Debug\GFNLinkMD.lib;msvcrt.lib;delayimp.lib;glpng.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;wsock32.lib;msacm32.lib;winmm.lib;wininet.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_$(Configuration)\*.*" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(Platform)_Release\*.*" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>xcopy  /y "fmod.dll" "$(OutDir)"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Nvidia\GFN\GFNApplication.cpp" />
