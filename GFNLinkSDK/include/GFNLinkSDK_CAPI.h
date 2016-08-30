@@ -43,7 +43,7 @@ typedef char bool;
 #define true 1
 #endif
 
-#define GFN_LINK_SDK_VERSION 1.0
+#define GFN_LINK_SDK_VERSION 1.2
 
 #ifdef __cplusplus
 namespace GFNLinkSDK
@@ -104,6 +104,38 @@ namespace GFNLinkSDK
             uoGraphicsSettings = 0 << 1
         } UserOptions;
 
+        // GFN Link Application error codes
+        // These can be passed to the NotifyErrorEncountered method in order to inform GFN Link
+        // that an error occurred on the application
+        typedef enum GFNLinkAppError
+        {
+            glaeSuccess = 0,
+
+            // Block 100 Errors are application specific errors
+            // Application devs can add their own error codes here for more specific reporting.
+            // Default behavior is to terminate session
+            glaeCriticalApplicationError = 0x100,
+
+            // Block 200 Errors are authorization/account federation errors
+            // Default behavior is to terminate the session and notify user of problem
+            glaeCriticalAuthenticationError = 0x200,		// Default handler for this block
+            glaeDelegateTokenExpired = 0x201,
+            glaeDelegateTokenRevoked = 0x202,
+            glaeDelegateTokenInvalid = 0x203,
+            glaeUserUnauthorized = 0x210,
+            glaeUserNotFound = 0x211,
+
+            // Block 300 Errors are critical version/patching related errors
+            // Default behavior is to terminate the session
+            glaeCriticalVersionError = 0x300,		        // Default handler for this block
+            glaeGameClientOutOfDate = 0x301,		        // Game client needs a patch to play
+
+            // Block 350 Errors are non critical version/patching related errors
+            // Default behavior is to log and continue
+            glaeNonCriticalVersionError = 0x350,		    // Default handler for this block
+            glaeGameClientPatched = 0x351,		            // Game client was updated successfully
+        } GFNLinkAppError;
+
         // ============================================================================================
         // C API
         // ============================================================================================
@@ -145,6 +177,9 @@ namespace GFNLinkSDK
 
         // Notifies of completed file changes in GFN storage location
         GFNLinkError glNotifyStorageChange();
+
+        // Notifies GFN link that an error occurred in the application
+        GFNLinkError glNotifyErrorEncountered(GFNLinkAppError appError, const char* pchErrorMessage);
 
 #ifdef __cplusplus
     } // extern "C"

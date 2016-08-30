@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- Autodetect PlatformToolset by Visual Studio version -->
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='12.0'">v120</PlatformToolset>
@@ -125,9 +125,6 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(GFNLinkSDKDir)dll\$(Platform)_$(Configuration)\*.*" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -243,9 +240,9 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(TargetDir)\GFN.dll</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(TargetDir)\GFN.dll</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(TargetDir)\GFN.dll</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">InstallDll.bat $(Platform) Release</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">InstallDll.bat $(Platform) $(Configuration)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">InstallDll.bat $(Platform) $(Configuration)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">InstallDll.bat $(Platform) Release</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Installing GFN.Dll</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Installing GFN.Dll</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Installing GFN.Dll</Message>

@@ -40,8 +40,15 @@
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <ProjectGuid>{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Condition="'$(Platform)' == 'x86'" Include="GFNLinkCSharpSupport">
+      <HintPath>..\..\GFNLinkSDK\dll\Win32_Release\GFNLinkCSharpSupport.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Platform)' == 'x64'" Include="GFNLinkCSharpSupport">
+      <HintPath>..\..\GFNLinkSDK\dll\x64_Release\GFNLinkCSharpSupport.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,20 +65,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\GFNLinkSDK\CSharpImport\CSharpImport.csproj">
-      <Project>{cadefc17-98a1-4a06-81de-e313ad75c52e}</Project>
-      <Name>CSharpImport</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\DLLs for C#\$(PlatformName)_$(ConfigurationName)\*.dll" "$(TargetDir)"
-	</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent Condition="'$(Platform)' == 'x86'">xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\Win32_$(ConfigurationName)\GFN.dll" "$(TargetDir)"</PostBuildEvent>
-    <PostBuildEvent Condition="'$(Platform)' == 'x64'">xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(PlatformName)_$(ConfigurationName)\GFN.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent Condition="'$(Platform)' == 'x86'">xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\Win32_Release\*.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent Condition="'$(Platform)' == 'x64'">xcopy /y "$(ProjectDir)..\..\GFNLinkSDK\dll\$(PlatformName)_Release\*.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

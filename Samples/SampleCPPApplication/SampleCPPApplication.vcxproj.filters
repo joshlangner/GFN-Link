@@ -35,7 +35,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="InstallDll.bat" />
-    <CustomBuild Include="RemoveDll.bat" />
+    <None Include="InstallDll.bat" />
+    <None Include="RemoveDll.bat" />
   </ItemGroup>
 </Project>

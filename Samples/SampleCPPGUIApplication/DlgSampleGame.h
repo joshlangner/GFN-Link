@@ -86,6 +86,7 @@ public:
     afx_msg void btnSet3PTokenClick();
     afx_msg void btnStorageClick();
 	afx_msg void btnNotifyClick();
+    afx_msg void btnNotifyErrClick();
 	afx_msg void OnBnClickedbtnAuth();
 	afx_msg void OnBnClickedbtnclearsent();
 	afx_msg void OnBnClickedbtnclearreceived();

@@ -947,7 +947,7 @@ void display_player()
 		glRotatef(m.rot.z, 0.0f, 0.0f, 1.0f);
 
 		float modelview[16];
-		int i,k,l;
+		int k,l;
 
 			// réacteur gauche (avec billboarding)
 			glPushMatrix();

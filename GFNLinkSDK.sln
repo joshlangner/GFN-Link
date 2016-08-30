@@ -1,15 +1,53 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleCApplication", "Samples\SampleCApplication\SampleCApplication.vcxproj", "{006C7734-CCBB-43B1-B46F-E81DCE1CB81A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleCPPApplication", "Samples\SampleCPPApplication\SampleCPPApplication.vcxproj", "{FF75135B-1373-41CF-A074-47C7007DF8F4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GFNLinkSDK", "GFNLinkSDK\GFNLinkSDK.vcxproj", "{49BC6457-FB79-4AF3-BB64-E64ADD48BE14}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleCPPGUIApplication", "Samples\SampleCPPGUIApplication\SampleCPPGUIApplication.vcxproj", "{BF17405F-B129-443F-9A04-893E2E9899BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCSharpApplication", "Samples\SampleCSharpApplication\SampleCSharpApplication.csproj", "{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GFNLinkSDK Files", "GFNLinkSDK Files", "{F844B125-9BDD-4EAC-BF3A-5CB3FDBDBF44}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\GFNLink_README.txt = GFNLinkSDK\GFNLink_README.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{58E82C32-18F7-4659-BE15-667CB2E94D0C}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\include\GFNLinkSDK_CAPI.h = GFNLinkSDK\include\GFNLinkSDK_CAPI.h
+		GFNLinkSDK\include\GFNLinkSDK_CAPI.hpp = GFNLinkSDK\include\GFNLinkSDK_CAPI.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{91D3C771-D04F-4617-93F5-4A21779545F6}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\props\GFNLinkSDK.props = GFNLinkSDK\props\GFNLinkSDK.props
+		GFNLinkSDK\props\GFNLinkSDKMT.props = GFNLinkSDK\props\GFNLinkSDKMT.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stubs", "stubs", "{1348E58F-B6A4-49D3-AD84-AD995DA56442}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NET stubs", ".NET stubs", "{3797DBAF-A9C1-4C8E-9A5F-3BF30D60F6A8}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\stubs\NET stubs\GfnApplication.cs = GFNLinkSDK\stubs\NET stubs\GfnApplication.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C++ stubs", "C++ stubs", "{C80F54C2-51A2-4D82-AE03-3F61E16EB4D5}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\stubs\C++ stubs\GFNApplication.cpp = GFNLinkSDK\stubs\C++ stubs\GFNApplication.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C stubs", "C stubs", "{3C625C9F-5961-4C88-8A48-B7242F87A0D3}"
+	ProjectSection(SolutionItems) = preProject
+		GFNLinkSDK\stubs\C stubs\GFNApplication.c = GFNLinkSDK\stubs\C stubs\GFNApplication.c
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Space Invaders", "Samples\SpaceInvaders for GFN\Space Invaders.vcxproj", "{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +73,6 @@ Global
 		{FF75135B-1373-41CF-A074-47C7007DF8F4}.Release|Win32.Build.0 = Release|Win32
 		{FF75135B-1373-41CF-A074-47C7007DF8F4}.Release|x64.ActiveCfg = Release|x64
 		{FF75135B-1373-41CF-A074-47C7007DF8F4}.Release|x64.Build.0 = Release|x64
-		{49BC6457-FB79-4AF3-BB64-E64ADD48BE14}.Debug|Win32.ActiveCfg = Debug|Win32
-		{49BC6457-FB79-4AF3-BB64-E64ADD48BE14}.Debug|x64.ActiveCfg = Debug|Win32
-		{49BC6457-FB79-4AF3-BB64-E64ADD48BE14}.Release|Win32.ActiveCfg = Release|Win32
-		{49BC6457-FB79-4AF3-BB64-E64ADD48BE14}.Release|x64.ActiveCfg = Release|Win32
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Debug|Win32.Build.0 = Debug|Win32
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Debug|x64.ActiveCfg = Debug|x64
@@ -47,13 +81,37 @@ Global
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Release|Win32.Build.0 = Release|Win32
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Release|x64.ActiveCfg = Release|x64
 		{BF17405F-B129-443F-9A04-893E2E9899BB}.Release|x64.Build.0 = Release|x64
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Debug|Win32.ActiveCfg = Debug|x86
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Debug|Win32.Build.0 = Debug|x86
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Debug|x64.ActiveCfg = Debug|x64
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Debug|x64.Build.0 = Debug|x64
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Release|Win32.ActiveCfg = Release|x86
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Release|Win32.Build.0 = Release|x86
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Release|x64.ActiveCfg = Release|x64
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764}.Release|x64.Build.0 = Release|x64
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Debug|Win32.Build.0 = Debug|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Debug|x64.ActiveCfg = Debug|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Debug|x64.Build.0 = Debug|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Release|Win32.ActiveCfg = Release|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Release|Win32.Build.0 = Release|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Release|x64.ActiveCfg = Release|Win32
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D}.Release|x64.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FF75135B-1373-41CF-A074-47C7007DF8F4} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
 		{006C7734-CCBB-43B1-B46F-E81DCE1CB81A} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
+		{FF75135B-1373-41CF-A074-47C7007DF8F4} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
 		{BF17405F-B129-443F-9A04-893E2E9899BB} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
+		{ECA622AF-085F-4E2A-B6F5-F74A90E5E764} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
+		{58E82C32-18F7-4659-BE15-667CB2E94D0C} = {F844B125-9BDD-4EAC-BF3A-5CB3FDBDBF44}
+		{91D3C771-D04F-4617-93F5-4A21779545F6} = {F844B125-9BDD-4EAC-BF3A-5CB3FDBDBF44}
+		{1348E58F-B6A4-49D3-AD84-AD995DA56442} = {F844B125-9BDD-4EAC-BF3A-5CB3FDBDBF44}
+		{3797DBAF-A9C1-4C8E-9A5F-3BF30D60F6A8} = {1348E58F-B6A4-49D3-AD84-AD995DA56442}
+		{C80F54C2-51A2-4D82-AE03-3F61E16EB4D5} = {1348E58F-B6A4-49D3-AD84-AD995DA56442}
+		{3C625C9F-5961-4C88-8A48-B7242F87A0D3} = {1348E58F-B6A4-49D3-AD84-AD995DA56442}
+		{036B9D9F-6E87-40AB-85FF-D14F10F35D4D} = {6B6BA8D3-0179-4EAB-8B90-FC64CCC07987}
 	EndGlobalSection
 EndGlobal
