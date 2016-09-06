@@ -40,9 +40,6 @@ Use .NET Stubs for C#/.NET
 Samples
 
 SampleCApplication - illustrates a minimal C implementation
-
 SampleCPPApplication - illustrates a minimal C++ implementation
-
 SampleCPPGUIApplication - illustrates a C++ implementation with a GUI interface
-
 SampleCSharpApplication - illustrates a minimal C# implementation 
