@@ -2,7 +2,7 @@ GFNLink Copyright © 2013-2015 NVIDIA Corporation. All rights reserved.
 
 The GFNLink SDK package includes the following:
 
-GFNLinkSDK\dll
+**GFNLinkSDK\dll**
 
 Win32 (x86) and x64 GFN.dlls
 
