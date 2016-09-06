@@ -1,5 +1,6 @@
 ## The GFNLink SDK package includes the following
 GFNLink Copyright © 2013-2015 NVIDIA Corporation. All rights reserved.
+
 See [Wiki for more detailed help](https://github.com/NVIDIA/GFN-Link/wiki)
 
 ### GFNLinkSDK\dll
