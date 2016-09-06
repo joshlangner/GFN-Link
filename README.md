@@ -1,5 +1,5 @@
-GFNLink Copyright © 2013-2015 NVIDIA Corporation. All rights reserved.
 ## The GFNLink SDK package includes the following
+GFNLink Copyright © 2013-2015 NVIDIA Corporation. All rights reserved.
 ### GFNLinkSDK\dll
 Win32 (x86) and x64 GFN.dlls
 This dll needs to be placed next to your game executable in order to enable communication with the GRID backend.
